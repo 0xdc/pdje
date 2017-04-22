@@ -7,7 +7,7 @@ admin features too!
 
 This app is motivated in part by the Snowden revelations and the
 ["NSA"-proof email](http://sealedabstract.com/code/nsa-proof-your-e-mail-in-2-hours/)
-(via)[https://prism-break.org/en/categories/gnu-linux/#mail-servers]
+[<sup>via</sup>](https://prism-break.org/en/categories/gnu-linux/#mail-servers)
 blog post.
 
 Quick-start
