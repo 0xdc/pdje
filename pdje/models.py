@@ -7,7 +7,7 @@ from passlib.hash import sha512_crypt
 # Create your models here.
 class Domain(models.Model):
     name = models.CharField(max_length=63, unique=True)
-    relay = models.BooleanField()
+    relay = models.BooleanField(default=False)
     
     def __str__(self):
         return self.name
