@@ -23,7 +23,7 @@ class RecipientAdmin(admin.ModelAdmin):
 
 class DomainAdmin(admin.ModelAdmin):
     ordering = ['name']
-    list_display = ["name", "aliases", "selectors"]
+    list_display = ["name", "aliases", "selectors", "credentials", "isrelay"]
     inlines = [DkimInline, SenderCredentialInline, AliasInline]
 
 admin.site.register(Domain, DomainAdmin)

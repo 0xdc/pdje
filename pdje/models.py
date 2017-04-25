@@ -20,6 +20,13 @@ class Domain(models.Model):
         selectors = DkimDomain.objects.filter(domain_name=self)
         return len(selectors)
 
+    def credentials(self):
+        credentials = SenderCredential.objects.filter(domain_name=self)
+        return len(credentials)
+
+    def isrelay(self):
+        return self.relay
+
 class User(models.Model):
     name = models.CharField(max_length=128)
     password = models.CharField(max_length=128)
