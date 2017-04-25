@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.validators import validate_email
 
 from passlib.hash import sha512_crypt
 
@@ -28,7 +29,7 @@ class Domain(models.Model):
         return self.relay
 
 class User(models.Model):
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, validators=[validate_email])
     password = models.CharField(max_length=128)
 
     def __str__(self):
