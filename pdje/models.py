@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+from passlib.hash import sha512_crypt
+
 # Create your models here.
 class Domain(models.Model):
     name = models.CharField(max_length=63, unique=True)
@@ -20,10 +22,15 @@ class Domain(models.Model):
 
 class User(models.Model):
     name = models.CharField(max_length=128)
-    password = models.CharField(max_length=106)
+    password = models.CharField(max_length=128)
     
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not sha512_crypt.identify(self.password):
+            self.password = sha512_crypt.hash(self.password)
+        super(User, self).save(*args, **kwargs) # Call the "real" save() method.
     
 class Alias(models.Model):
     domain = models.ForeignKey(Domain, models.CASCADE)

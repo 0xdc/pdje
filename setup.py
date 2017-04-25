@@ -30,4 +30,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Topic :: Internet :: WWW/HTTP',
     ],
+    install_requires=[
+        'passlib',
+    ],
 )
