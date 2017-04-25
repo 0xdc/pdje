@@ -8,7 +8,7 @@ from passlib.hash import sha512_crypt
 class Domain(models.Model):
     name = models.CharField(max_length=63, unique=True)
     relay = models.BooleanField(default=False)
-    
+
     def __str__(self):
         return self.name
 
@@ -23,7 +23,7 @@ class Domain(models.Model):
 class User(models.Model):
     name = models.CharField(max_length=128)
     password = models.CharField(max_length=128)
-    
+
     def __str__(self):
         return self.name
 
@@ -31,12 +31,12 @@ class User(models.Model):
         if not sha512_crypt.identify(self.password):
             self.password = sha512_crypt.hash(self.password)
         super(User, self).save(*args, **kwargs) # Call the "real" save() method.
-    
+
 class Alias(models.Model):
     domain = models.ForeignKey(Domain, models.CASCADE)
     source = models.CharField(max_length=128,blank=True)
     target = models.ForeignKey(User, models.CASCADE)
-    
+
     def __str__(self):
         return "{}@{} -> {}".format(self.source,self.domain,self.target)
 
